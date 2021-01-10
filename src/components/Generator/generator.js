@@ -21,13 +21,11 @@ export default function Generator() {
     }
 
     return <div id='generator'>
-        {/* <h1>Generator</h1> */}
-        <div id='generator-container'>
+        <div className='container' id='generator-container'>
             <h1>#{generatedColor}</h1>
             <div id='generator-color' style={{ backgroundColor: `#${generatedColor}` }}></div>
-            <button class='generator-button' id='generator-generate' onClick={generateNewColor}>Generate</button>
-            <button class='generator-button' id='generator-save' onClick={saveGeneratedColor}>Save</button>
+            <button className='generator-button' id='generator-generate' onClick={generateNewColor}>Generate</button>
+            <button className='generator-button' id='generator-save' onClick={saveGeneratedColor}>Save</button>
         </div>
-
     </div>
 }
