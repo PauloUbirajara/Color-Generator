@@ -1,9 +1,16 @@
+import Generator from './components/generator';
 import './App.css';
 
 function App() {
 
   return (
-    <h1>Hello World!</h1>
+    <>
+      <div id='main'>
+        <div></div>
+        {/* <Generator /> - Histórico de cores geradas*/}
+        <Generator />
+      </div>
+    </>
   );
 }
 
