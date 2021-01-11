@@ -1,13 +1,8 @@
 import Generator from './components/Generator/generator';
-import ColorHistory from './components/ColorHistory/colorhistory';
 import './App.css';
 
 function App() {
-
-  return <div id='main'>
-    <ColorHistory />
-    <Generator />
-  </div>;
+  return <Generator />;
 }
 
 export default App;

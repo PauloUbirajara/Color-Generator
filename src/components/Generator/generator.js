@@ -1,8 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ColorHistory from '../ColorHistory/colorhistory';
 import './generator.css';
 
 export default function Generator() {
-    const [generatedColor, setGeneratedColor] = useState('FFFFFF');
+
+    const [previousColorList, previousGeneratedColor] =
+        [
+            JSON.parse(localStorage.getItem("color-history")) || [],
+            JSON.parse(localStorage.getItem("generated-color")) || 'FFFFFF'
+        ];
+
+    const [colorList, setColorList] = useState(previousColorList);
+    const [generatedColor, setGeneratedColor] = useState(previousGeneratedColor);
+
+    useEffect(() => {
+        localStorage.setItem("color-history", JSON.stringify(colorList));
+    }, [colorList]);
+
+    useEffect(() => {
+        localStorage.setItem("generated-color", JSON.stringify(generatedColor));
+    }, [generatedColor]);
+
+    const colorListLimit = 30;
 
     function generateNewColor() {
         setGeneratedColor(
@@ -10,22 +29,32 @@ export default function Generator() {
                 .toString(16)
                 .toUpperCase()
         );
-
-        // const color = document.getElementById('generator-color');
-        // console.log(color);
-        // console.log(generatedColor);
     }
 
-    function saveGeneratedColor() {
-        console.log()
+    function saveColor() {
+        const newColorList = [generatedColor, ...colorList];
+        if (newColorList.length > colorListLimit) newColorList.length = colorListLimit;
+
+        setColorList(newColorList);
     }
 
-    return <div id='generator'>
-        <div className='container' id='generator-container'>
-            <h1>#{generatedColor}</h1>
-            <div id='generator-color' style={{ backgroundColor: `#${generatedColor}` }}></div>
-            <button className='generator-button' id='generator-generate' onClick={generateNewColor}>Generate</button>
-            <button className='generator-button' id='generator-save' onClick={saveGeneratedColor}>Save</button>
+    function clearHistory() {
+        setColorList([]);
+    }
+
+    return <div id='main'>
+        <ColorHistory
+            colorList={colorList}
+            clearHistory={clearHistory}
+        />
+
+        <div id='generator'>
+            <div className='container' id='generator-container'>
+                <h1>#{generatedColor}</h1>
+                <div id='generator-color' style={{ backgroundColor: `#${generatedColor}` }}></div>
+                <button className='button' id='generator-generate' onClick={generateNewColor}>Generate</button>
+                <button className='button' id='generator-save' onClick={saveColor}>Save</button>
+            </div>
         </div>
     </div>
 }

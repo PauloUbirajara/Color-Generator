@@ -1,18 +1,11 @@
-import { useState } from 'react';
 import './colorhistory.css';
 
-export default function ColorHistory() {
+export default function ColorHistory(props) {
 
-    const [colorList, setColorList] = useState([]);
-
-    function addNewColor(newColor) {
-        setColorList([...colorList, newColor]);
-    }
-
-    const el = colorList.map((color, index) => {
-        return <div>
-            <div id='item-color' key={index}></div>
-            <p>{color}</p>
+    const el = props.colorList.map((color, index) => {
+        return <div id='item-container' key={index}>
+            <div id='item-color' key={`color-${index}`} style={{ backgroundColor: `#${color}` }}></div>
+            <p key={`item-${index}`}>#{color}</p>
         </div>
     });
 
@@ -21,5 +14,6 @@ export default function ColorHistory() {
         <div id='color-list'>
             {el}
         </div>
+        <button className='button' id='history-clear' onClick={props.clearHistory}>Clear</button>
     </div>;
 } 
