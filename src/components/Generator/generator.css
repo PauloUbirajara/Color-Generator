@@ -21,7 +21,6 @@
 
 #generator-generate {
     background: var(--main-color);
-    /* box-shadow: 0px 5px 20px rgba(81, 150, 255, 0.3); */
     color: #fff;
 }
 
@@ -42,16 +41,6 @@
     color: #fff;
 }
 
-.button {
-    border-radius: 25px;
-    width: 177px;
-    height: 42px;
-    font-weight: 700;
-    font-size: 18px;
-    transition: 250ms all;
-    cursor: pointer;
-}
-
 #main {
     background: #dedede;
     min-height: 100vh;
@@ -61,6 +50,21 @@
     justify-content: center;
     align-items: center;
     padding: 25px;
+}
+
+.button {
+    border-radius: 25px;
+    width: 177px;
+    height: 42px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: 250ms all;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.button:active {
+    opacity: 0.7;
 }
 
 .container {
@@ -73,9 +77,13 @@
     border-radius: 15px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     #main {
         display: flex;
         flex-direction: column-reverse;
+        font-size: 1.25rem;
+    }
+    #generator {
+        min-height: 60vh;
     }
 }

@@ -21,12 +21,13 @@ export default function Generator() {
         localStorage.setItem("generated-color", JSON.stringify(generatedColor));
     }, [generatedColor]);
 
-    const colorListLimit = 30;
+    const colorListLimit = 10;
 
     function generateNewColor() {
         setGeneratedColor(
-            (Math.floor(Math.random() * 0xFFFFFF))
+            Math.floor(Math.random() * 0xFFFFFF)
                 .toString(16)
+                .padEnd(6, '0')
                 .toUpperCase()
         );
     }

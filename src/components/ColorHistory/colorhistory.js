@@ -3,8 +3,8 @@ import './colorhistory.css';
 export default function ColorHistory(props) {
 
     const el = props.colorList.map((color, index) => {
-        return <div id='item-container' key={index}>
-            <div id='item-color' key={`color-${index}`} style={{ backgroundColor: `#${color}` }}></div>
+        return <div key={index} id='item-container'>
+            <div key={`color-${index}`} id='item-color' style={{ backgroundColor: `#${color}` }}></div>
             <p key={`item-${index}`}>#{color}</p>
         </div>
     });
