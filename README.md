@@ -1,5 +1,5 @@
 # Color Generator
-
+### Disponível para uso pelo [Vercel](https://color-generator-rouge.vercel.app/)
 
 <img src='./preview.jpg'></img>
 
